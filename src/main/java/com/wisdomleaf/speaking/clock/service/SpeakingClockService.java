@@ -1,14 +1,27 @@
 package com.wisdomleaf.speaking.clock.service;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import org.springframework.stereotype.Service;
+
+import com.wisdomleaf.speaking.clock.util.DateTimeConverter;
 
 @Service
 public class SpeakingClockService {
 
 	// Print Time in words.
-    public String printWords(int h, int m)
+    public String printWords(String time)
     {
     	String timeInWords = null;
+    	try
+    	{
+    	LocalTime localTime = DateTimeConverter.convertStringToLocalTime(time);
+    	
+    	int h =localTime.getHour();
+    	int m =localTime.getMinute();
+    	
+    	
         String nums[] = { "zero", "one", "two", "three", "four",
                             "five", "six", "seven", "eight", "nine",
                             "ten", "eleven", "twelve", "thirteen",
@@ -47,7 +60,12 @@ public class SpeakingClockService {
         else if (m > 30)
         	timeInWords = nums[60 - m] + " minutes to " +    
                                                 nums[(h % 12) + 1];
-        
+    	}
+    	catch (Exception e) {
+    		
+    		timeInWords = "Invalid Time";
+    		
+		}
         return timeInWords;
     }
 }

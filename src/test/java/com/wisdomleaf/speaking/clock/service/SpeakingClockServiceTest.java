@@ -12,7 +12,7 @@ public class SpeakingClockServiceTest {
 	private final SpeakingClockService speakingClockService = mock(SpeakingClockService.class);
 	@Test
 	public void test() {
-		String printWords = speakingClockService.printWords(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+		String printWords = speakingClockService.printWords("11:45");
 		assertNotNull(printWords);
 	}
 

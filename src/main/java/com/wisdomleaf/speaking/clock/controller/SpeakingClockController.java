@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wisdomleaf.speaking.clock.service.SpeakingClockService;
@@ -18,8 +19,8 @@ public class SpeakingClockController {
 		this.speakingClockService = speakingClockService;
 	}
 	@GetMapping(value = "/speakingClock", produces = MediaType.TEXT_PLAIN_VALUE)
-	public String speakingClock()
+	public String speakingClock(@RequestParam("time") String time)
 	{
-		return speakingClockService.printWords(LocalDateTime.now().getHour(), LocalDateTime.now().getMinute());
+		return speakingClockService.printWords(time);
 	}
 }
